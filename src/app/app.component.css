@@ -1,0 +1,38 @@
+.span{
+    margin:auto;
+}
+
+.footer {
+    position: relative;
+  }
+
+  .background{
+      background-image: url('../assets/background1.jpg');
+      background-repeat: no-repeat;
+      background-size:cover;
+      min-height: 100vh;
+      height:auto;
+  }
+
+  .opacity{
+      min-height:100vh;
+      height:auto
+  }
+/* 
+   @media only screen and (max-width:700px) {
+ 
+    .footer {
+       
+       position: relative;
+       bottom: auto;
+       left: 0;
+       width: 100%;
+      }
+      .background{
+          height:auto;
+          position:relative
+
+      }
+}  */
+
+  

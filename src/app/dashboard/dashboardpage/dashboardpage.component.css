@@ -1,0 +1,21 @@
+.example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+  
+  
+  
+  ::ng-deep .mat-tab-labels, .mat-tab-label, .mat-tab-link {
+   color: white;
+   background-color:black;
+ }
+ 
+ ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+   background: white;
+   height: 5px; 
+ }
+
+ ::ng-deep .mat-menu-content {
+  background: 'black' !important;
+}

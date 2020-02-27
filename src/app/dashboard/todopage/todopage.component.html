@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4 text-center" style="margin-top:10px;cursor: pointer;" (click)="routeToCreate()">
+      <mat-icon color="primary">add_circle</mat-icon>
+      <p style="color: white;font-weight: 800;">Create a New ToDo List</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center" *ngIf="!toDoFound">
+      <img src="../../../assets/robot.png"  style="width:20%;margin-top:40px;"/>
+      <h4 style="color: white">No data in Your Collection !</h4>
+    </div>
+  </div>
+  <div class="row" style="min-height:450px;" *ngIf="toDoFound">
+    <div class="col-md-4" style="margin-bottom:5px;" *ngFor="let todo of allToDo">
+      <mat-card style="background-color: rgba(0,0,0,0.7);width:100%">
+        <mat-card-content>
+          <p>{{todo.title | uppercase}}</p>
+          <p>Created By {{todo.createrName}}</p>
+          <hr>
+        </mat-card-content>
+        <div style="height:150px;overflow: auto;">
+          <mat-list role="list" *ngFor="let subitem of todo.listdata">
+            <mat-list-item role="listitem">
+              <span>
+                <mat-icon matPrefix *ngIf="!subitem.itemcompleted">check_circle</mat-icon>
+              </span>
+              <span>
+                <mat-icon matPrefix *ngIf="subitem.itemcompleted" style="color:green">check_circle</mat-icon>
+              </span>
+              {{subitem.itemname}}</mat-list-item>
+          </mat-list>
+
+        </div>
+        <hr>
+        <p>Modified By {{todo.modifierName}}</p>
+
+        <p>Modified On {{todo.ModifiedOn | date:'medium'}}</p>
+
+        <hr>
+        <mat-card-actions style="text-align: right;">
+          <button mat-raised-button color="primary" (click)="editToDo(todo.toDoId)">Edit</button>
+          <button mat-button color="primary" (click)="deleteToDo(todo.toDoId)">Delete</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+  </div>
+  <div class="row" style="margin: 20px;">
+    <div class="col-xs-6 text-center"  (click)="previouspage()">
+      <mat-icon style="color: white;cursor: pointer;">arrow_back_ios</mat-icon>
+    </div>
+    
+    <div class="col-xs-6 text-center" (click)="nextpage()">
+      <mat-icon style="color: white;cursor: pointer;" >arrow_forward_ios</mat-icon>
+    </div>
+  </div>
+</div>

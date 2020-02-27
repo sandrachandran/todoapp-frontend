@@ -1,0 +1,78 @@
+<mat-toolbar style="background-color:rgba(0,0,0,0.7);color:white;margin-top: 5px;">
+  <mat-toolbar-row>
+    <button mat-raised-button color="primary" (click)="navigateToDashboard()">Dashboard</button>
+    <span class="example-fill-remaining-space"></span>
+    <button mat-raised-button style="margin-right:10px;" color="primary" (click)="logout()">Logout</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container">
+  <div class="row" style="margin-top:20px;">
+    <div class="col-sm-4 col-sm-offset-4 text-center">
+      <mat-form-field style="width: 100%;" appearance="outline">
+        <input type="text" matInput placeholder="Add a Title" name="item" [(ngModel)]="title">
+      </mat-form-field>
+      <mat-form-field style="width: 100%;">
+        <input type="text" matInput placeholder="Add a Item" name="item" (keydown.Enter)="addItem()" [(ngModel)]="item">
+        <mat-icon matSuffix (click)="addItem()" color="primary" style="cursor: pointer;">add_circle</mat-icon>
+      </mat-form-field>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle *ngFor="let item of todolist" style="background-color:rgba(0,0,0,0.4);">
+          <div>
+            completed :
+            <mat-icon *ngIf="item.itemcompleted == false" (click)="completeItemAction(item.itemname)" style="cursor:pointer">
+              check_circle_outline</mat-icon>
+            <mat-icon *ngIf="item.itemcompleted == true" style="color:green;cursor: pointer;"
+              (click)="completeItemAction(item.itemname)">check_circle_outline</mat-icon>
+
+          </div>
+          <mat-expansion-panel-header *ngIf="item.itemcompleted == false">
+
+            <mat-panel-title style="width:100%;">
+              {{item.itemname}}
+            </mat-panel-title>
+            <mat-panel-description>
+              <mat-icon color="primary" style="margin:0px;" (click)="deleteItem(item.itemname)" style="cursor: pointer;">cancel</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-expansion-panel-header *ngIf="item.itemcompleted == true" style="background-color:rgba(0,128,0,0.5);">
+
+            <mat-panel-title style="width:100%;">
+              {{item.itemname}}
+            </mat-panel-title>
+            <mat-panel-description>
+              <mat-icon color="primary" style="margin:0px;" (click)="deleteItem(item.itemname)">cancel</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-form-field style="width: 100%;">
+            <input type="text" matInput placeholder="Add a SubItem" name="subitem" (keydown.Enter)="addSubItem(item.itemname)" [(ngModel)]="subitem">
+            <mat-icon matSuffix (click)="addSubItem(item.itemname)" color="primary" style="cursor: pointer;">add_circle</mat-icon>
+          </mat-form-field>
+          <div *ngFor="let subitem of item.subTodoitem" style="align-items:flex-start ;">
+            <div class="row">
+              <div class="col-xs-10" style="text-align: left;">
+
+                <mat-icon *ngIf="subitem.completed == false"
+                  (click)="completeAction(item.itemname,subitem.subitemname)" style="cursor: pointer;">check_circle_outline</mat-icon>
+                <mat-icon *ngIf="subitem.completed == true" style="color:green;cursor: pointer;"
+                  (click)="completeAction(item.itemname,subitem.subitemname)">check_circle_outline</mat-icon>
+
+                <p>{{subitem.subitemname}}</p>
+
+              </div>
+              <div class="col-xs-2">
+
+                <mat-icon style="margin: 0px;cursor: pointer;" (click)="deleteSubItem(item.itemname,subitem.subitemname)">cancel
+                </mat-icon>
+              </div>
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+      <button mat-raised-button color="primary" style="margin-top: 10px;" (click)="createToDo()" [disabled]="showSpinner"><mat-spinner [diameter]="30" style="margin:0 auto;" *ngIf="showSpinner"></mat-spinner>Create a New
+        To-Do</button>
+    </div>
+  </div>
+</div>

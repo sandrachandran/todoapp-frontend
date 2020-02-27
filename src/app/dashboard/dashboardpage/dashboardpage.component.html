@@ -1,0 +1,44 @@
+<mat-toolbar style="background-color:rgba(0,0,0,0.7);color:white;margin-top: 5px;">
+  <mat-toolbar-row>
+    <button mat-raised-button color="primary" disabled>Dashboard</button>
+    <span class="example-fill-remaining-space"></span>
+    <mat-icon color="primary" style="margin: 5px;margin-right:30px;cursor:pointer" [matMenuTriggerFor]="notification">event_note</mat-icon>
+    <button mat-raised-button style="margin-right:10px;" color="primary" (click)="logout()">Logout</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+  <mat-menu #notification="matMenu" >
+    <div style="height: 300px;overflow: auto;">
+    <div *ngFor="let notification of Notifications"  style="padding:10px;border: 1px solid black;text-align:left;background-color: white;cursor: pointer;margin:5px;">
+      <p style="color: black;">{{notification.message}}</p>
+    </div>
+  </div>
+  </mat-menu>
+  
+
+
+<mat-tab-group mat-stretch-tabs dense class="example-stretched-tabs ">
+  <mat-tab label="To Do List">
+    <ng-template matTabContent>
+      <app-todopage></app-todopage>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Friends">
+    <ng-template matTabContent>
+      <app-friends></app-friends>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Search New Friend">
+    <ng-template matTabContent>
+      <app-searchfriend></app-searchfriend>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Friend Request">
+    <ng-template matTabContent>
+      <app-friendrequest></app-friendrequest>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

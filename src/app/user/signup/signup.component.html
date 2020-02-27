@@ -1,0 +1,55 @@
+<div class="row" style="margin-top:0px;" *ngIf="complete">
+
+  <div class="col-md-4 col-md-offset-4 text-center" style="margin-top:0px;">
+    <h3
+      style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;color:white;font-weight: 800;">
+      Register Now </h3>
+    <hr>
+    <form #signUpForm="ngForm" (ngSubmit)="signupFunction()">
+      <mat-form-field style="width: 100%;" floatLabel="auto" appearance="outline">
+        <mat-label>FirstName</mat-label>
+        <input type="text" matInput placeholder="  Enter Firstname" name="firstName" [(ngModel)]="firstName">
+      </mat-form-field>
+      <mat-form-field style="width: 100%;" floatLabel="auto" appearance="outline">
+        <mat-label>LastName</mat-label>
+        <input type="text" matInput placeholder="  Enter Lastname" name="lastName" [(ngModel)]="lastName">
+      </mat-form-field>
+      <mat-form-field style="width: 100%;" floatLabel="auto" appearance="outline">
+        <mat-label>UserName</mat-label>
+        <input type="text" matInput placeholder="  Enter Username" name="userName" [(ngModel)]="userName">
+      </mat-form-field>
+      <mat-form-field style="width: 100%;" floatLabel="auto" appearance="outline">
+        <mat-label>Email ID</mat-label>
+        <input type="email" matInput placeholder="  Enter Email ID" name="email" [(ngModel)]="email"/>
+      </mat-form-field>
+      <!-- <mat-form-field style="width:100%;" floatLabel="auto" appearance="outline">
+
+        <input type="text" matInput ng2TelInput [ng2TelInputOptions]="{initialCountry: 'in'}"
+          (countryChange)="onCountryChange($event)" [(ngModel)]="mobile" name="mobile" />
+
+      </mat-form-field> -->
+      <mat-form-field style="width: 50%;" floatLabel="auto" appearance="outline">
+        <mat-label>Country</mat-label>
+        <select matNativeControl required style="color: white;" [(ngModel)]="countryCode" name="countryCode" (keydown)="countryChanges()" (click)="countryChanges()">
+          <option [value]="country.code" style="font-size:1.5rem;background-color:whitesmoke;color:darkgoldenrod;" *ngFor="let country of countries">{{country.name}} 
+          </option>
+          
+        </select>
+      </mat-form-field>
+      <mat-form-field style="width: 50%;" floatLabel="auto" appearance="outline">
+        <mat-label>Mobile Number</mat-label>
+        <input type="tel" matInput placeholder="  Enter Mobile Number" name="mobile" [(ngModel)]="mobile"/>
+      </mat-form-field>
+      
+      <mat-form-field style="width: 100%;" floatLabel="auto" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput placeholder="  Enter Password" name="password" [(ngModel)]="password">
+      </mat-form-field>
+      <button mat-raised-button type="submit"
+        style="background-color:white;color:darkgoldenrod;margin-bottom:10px;text-align: center;" [disabled]="showSpinner"><mat-spinner [diameter]="30" style="margin:0 auto;" *ngIf="showSpinner"></mat-spinner>REGISTER NOW</button>
+    </form>
+    <hr>
+    <a style="color:white;margin-bottom:5px" [routerLink]="['/login']">Already Registered ! Login Now</a>
+  </div>
+  
+</div>

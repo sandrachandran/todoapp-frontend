@@ -1,0 +1,36 @@
+<div class="container" style="height:75vh;overflow:auto;" *ngIf="friendsFound">
+  <div class="container-fluid" >
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4 text-center">
+        <mat-form-field style="width: 100%;" appearance="outline">
+          <input type="text" matInput placeholder="Search Friends" name="term" [(ngModel)]="term">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row" style="background-color: white;padding:10px;margin-bottom:0.5px" *ngFor="let user of allFriends | filter:term">
+      <div class="col-sm-6 text-center">
+        <div class="crop">
+          {{user.friendName.charAt(0)}}
+        </div>
+        
+        <p style="color:black;font-weight: 800;text-align: left;">{{user.friendName}}</p>
+  
+      </div>
+      <div class="col-sm-6" style="text-align:end">
+        <button mat-button color="primary" style="margin:5px;" (click)="deleteFriends(user.friendsId)">Remove
+          Friend</button>
+        <button mat-raised-button color="primary" style="margin:5px;" (click)="viewToDo(user)">View ToDo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="!friendsFound">
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      
+      <img src="../../../assets/robot.png"  style="width:20%;margin-top:100px;"/>
+      <h4 style="color: white;">No data in Your Collection !</h4>
+    </div>
+  </div>
+</div>

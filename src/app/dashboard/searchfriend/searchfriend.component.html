@@ -1,0 +1,30 @@
+<div class="container " style="height:75vh;overflow:auto;" *ngIf="allUser">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4 text-center">
+        <mat-form-field style="width: 100%;" appearance="outline">
+          <input type="text" matInput placeholder="Search Friends" name="term" [(ngModel)]="term">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row" style="background-color: white;margin-bottom:1px;" *ngFor="let user of allUser | filter:term"  >
+      <div *ngIf="user.userId !== currentUser">
+
+        <div class="col-sm-6 text-center" style="margin-top: 10px;" >
+          <div class="crop">
+            {{user.firstName.charAt(0)}}
+            
+          </div>
+          <p style="text-align:left;color:black;font-weight: 800;">{{user.firstName}} {{user.lastName}}</p>
+    
+        </div>
+        
+        <div class="col-sm-6" style="text-align:end">
+          <button mat-raised-button color="primary" style="margin: 5px;" (click)="sendRequest(user)"
+            *ngIf="!user.reqSend " >Add Friend</button>
+            <button *ngIf="user.reqSend" color="primary"  mat-raised-button style="margin:5px;background-color: gray;">Already Sent</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
